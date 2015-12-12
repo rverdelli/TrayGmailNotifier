@@ -94,6 +94,9 @@
     <Compile Include="PasswordEncryptionForm.Designer.cs">
       <DependentUpon>PasswordEncryptionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TransparentRichTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="TrayGmailNotifier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +165,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NoNewMail.ico" />
+    <None Include="Resources\Border.jpg" />
+    <None Include="Resources\dark_blue_gradient_by_msketchley-d3gs0d8.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

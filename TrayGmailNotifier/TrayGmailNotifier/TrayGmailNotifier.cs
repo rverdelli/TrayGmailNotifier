@@ -23,11 +23,27 @@ namespace TrayGmailNotifier
         private int delayBetweenChecks;
         private List<string> actualUnreadMessagesIds = new List<string>();
         private string gmailPassword;
+        private TransparentRichTextBox notificationBody;
 
         public TrayGmailNotifier()
         {
             InitializeComponent();
             this.Icon = new Icon(AppConfig.NoNewMailIconPath.Value);
+            notificationBody = new TransparentRichTextBox();
+            notificationBody.AutoWordSelection = true;
+            notificationBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(26)))), ((int)(((byte)(72)))));
+            notificationBody.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            notificationBody.Font = new System.Drawing.Font("Calibri", 10F);
+            notificationBody.ForeColor = System.Drawing.SystemColors.InactiveBorder;
+            notificationBody.Location = new System.Drawing.Point(4, 4);
+            notificationBody.Name = "NotificationBody";
+            notificationBody.ReadOnly = true;
+            notificationBody.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            notificationBody.Size = new System.Drawing.Size(392, 107);
+            notificationBody.TabIndex = 1;
+            notificationBody.Text = "Sample Text";
+
+            this.Controls.Add(notificationBody);
 
             //General settings
             notificationsPersistDelay = AppConfig.NotificationsPersistDelay.Value;
@@ -68,7 +84,10 @@ namespace TrayGmailNotifier
                     System.Net.WebClient objClient = new System.Net.WebClient();
                     string response;
                     string from;
-                    string summary; 
+                    string subject;
+                    string body;
+                    DateTime timestamp;
+
                     List<string> oldUnreadMessagesIds = new List<string>();
                     oldUnreadMessagesIds.AddRange(actualUnreadMessagesIds);
                     actualUnreadMessagesIds.Clear();
@@ -99,8 +118,10 @@ namespace TrayGmailNotifier
                         if (oldUnreadMessagesIds.Where(x => x.Equals(id)).Count() == 0)
                         {
                             from = node.SelectSingleNode("author").SelectSingleNode("email").InnerText;
-                            summary = node.SelectSingleNode("title").InnerText + System.Environment.NewLine + node.SelectSingleNode("summary").InnerText;
-                            TS_showNotification(from, summary);
+                            subject = node.SelectSingleNode("title").InnerText;
+                            body = node.SelectSingleNode("summary").InnerText;
+                            timestamp = Convert.ToDateTime(node.SelectSingleNode("issued").InnerText);
+                            showN(from, timestamp, subject, body);
                         }
                     }
 
@@ -115,6 +136,14 @@ namespace TrayGmailNotifier
             }
         }
 
+        public void showN(string from, DateTime timestamp, string subject, string body)
+        {
+            TS_setupNotification(from, timestamp, subject, body);
+            TS_unhideNotificationForm();
+            fadeInAndOut();
+            TS_hideNotificationForm();
+        }
+
         public static byte[] FromBase64ForUrlString(string base64ForUrlInput)
         {
             int padChars = (base64ForUrlInput.Length % 4) == 0 ? 0 : (4 - (base64ForUrlInput.Length % 4));
@@ -125,77 +154,120 @@ namespace TrayGmailNotifier
             return Convert.FromBase64String(result.ToString());
         }
 
-        delegate void showNotificationDelegate(string title, string body);
-        public void TS_showNotification(string title, string body)
+        delegate void unhideNotificationFormDelegate();
+        public void TS_unhideNotificationForm()
         {
             if (this.InvokeRequired)
             {
-                object[] parameters = new object[2];
-                parameters[0] = title;
-                parameters[1] = body;
-                showNotificationDelegate snd = new showNotificationDelegate(TS_showNotification);
-                this.Invoke(snd, parameters);
+                unhideNotificationFormDelegate snd = new unhideNotificationFormDelegate(TS_unhideNotificationForm);
+                this.Invoke(snd);
             }
             else
-            {
-                showNotification(title, body);
-            }
+                unhideNotificationform();
         }
 
-        public void showNotification(string title, string body)
+        public void unhideNotificationform()
         {
-            NotificationTitle.Text = "from: " + title;
-
-            NotificationBody.Clear();
-
-            NotificationBody.SelectionFont = new Font(NotificationBody.SelectionFont, FontStyle.Bold);
-            NotificationBody.AppendText(body.Substring(0, body.IndexOf(System.Environment.NewLine)));
-
-            NotificationBody.SelectionFont = new Font(NotificationBody.SelectionFont, FontStyle.Regular);
-            NotificationBody.AppendText(body.Substring(body.IndexOf(System.Environment.NewLine)));
-
             showMessageForm = true;
+            this.Opacity = 0;
             this.Show();
             this.TopMost = true;
-            
-            TS_fadeInAndOut();
+        }
 
+        delegate void hideNotificationFormDelegate();
+        public void TS_hideNotificationForm()
+        {
+            if (this.InvokeRequired)
+            {
+                hideNotificationFormDelegate snd = new hideNotificationFormDelegate(TS_hideNotificationForm);
+                this.Invoke(snd);
+            }
+            else
+                hideNotificationform();
+        }
+
+        public void hideNotificationform()
+        {
             this.Hide();
             showMessageForm = false;
         }
 
-        delegate void raiseOpacityDelegate();
-        public void TS_fadeInAndOut()
+        delegate void setupNotificationDelegate(string from, DateTime timestamp, string subject, string body);
+        public void TS_setupNotification(string from, DateTime timestamp, string subject, string body)
         {
             if (this.InvokeRequired)
             {
-                raiseOpacityDelegate snd = new raiseOpacityDelegate(TS_fadeInAndOut);
-                this.Invoke(snd);
+                object[] parameters = new object[4];
+                parameters[0] = from;
+                parameters[1] = timestamp;
+                parameters[2] = subject;
+                parameters[3] = body;
+                setupNotificationDelegate snd = new setupNotificationDelegate(TS_setupNotification);
+                this.Invoke(snd, parameters);
             }
             else
             {
-                fadeInAndOut();
+                setupNotification(from, timestamp, subject, body);
             }
+        }
+
+        public void setupNotification(string from, DateTime timestamp, string subject, string body)
+        {
+            notificationBody.Clear();
+
+            notificationBody.SelectionIndent = 4;
+            notificationBody.SelectionRightIndent = 4;
+
+            notificationBody.SelectionFont = new Font("Calibri", 9, FontStyle.Italic);
+            notificationBody.AppendText(from + System.Environment.NewLine);
+
+            notificationBody.SelectionFont = new Font("Calibri", 11, FontStyle.Bold);
+            notificationBody.AppendText(subject + System.Environment.NewLine);
+
+            notificationBody.SelectionFont = new Font("Calibri", 10, FontStyle.Regular);
+            notificationBody.AppendText(body);
+        }
+
+        delegate void setOpacityDelegate(double opacity);
+        public void TS_setOpacity(double opacity)
+        {
+            if (this.InvokeRequired)
+            {
+                object[] parameters = new object[1];
+                parameters[0] = opacity;
+                setOpacityDelegate snd = new setOpacityDelegate(TS_setOpacity);
+                this.Invoke(snd, parameters);
+            }
+            else
+            {
+                setOpacity(opacity);
+            }
+        }
+
+        private void setOpacity(double opacity)
+        {
+            this.Opacity = opacity;
         }
 
         private void fadeInAndOut()
         {
-            this.Opacity = 0;
+            TS_setOpacity(0);
             double opacityPercentage = 0;
             while (this.Opacity < 1)
             {
                 opacityPercentage += notificationsFadeInStepIncrement; 
-                this.Opacity += (Math.Cos((opacityPercentage*Math.PI) + Math.PI)/2.0) + 0.5;
-                Application.DoEvents();
+                TS_setOpacity((Math.Cos((opacityPercentage*Math.PI) + Math.PI)/2.0) + 0.5);
                 Thread.Sleep(notificationsFadeInStepDelay);
             }
 
             Thread.Sleep(notificationsPersistDelay);
-            
+
+            TS_setOpacity(1);
+            opacityPercentage = 1;
             while (this.Opacity > 0)
             {
-                this.Opacity -= notificationsFadeInStepIncrement;
-                Application.DoEvents();
+                opacityPercentage -= notificationsFadeInStepIncrement;
+                TS_setOpacity(opacityPercentage);
                 Thread.Sleep(notificationsFadeInStepDelay);
             }
         }
