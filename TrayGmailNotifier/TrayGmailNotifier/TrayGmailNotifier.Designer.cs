@@ -50,24 +50,26 @@
             this.contextMenuStripTray.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmsClose});
             this.contextMenuStripTray.Name = "contextMenuStripTray";
-            this.contextMenuStripTray.Size = new System.Drawing.Size(115, 28);
+            this.contextMenuStripTray.Size = new System.Drawing.Size(104, 26);
             // 
             // cmsClose
             // 
             this.cmsClose.Name = "cmsClose";
-            this.cmsClose.Size = new System.Drawing.Size(114, 24);
+            this.cmsClose.Size = new System.Drawing.Size(103, 22);
             this.cmsClose.Text = "Close";
             this.cmsClose.Click += new System.EventHandler(this.cmsClose_Click);
             // 
             // TrayGmailNotifier
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.BackgroundImage = global::TrayGmailNotifier.Properties.Resources.Border;
+            this.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.BackgroundImage = global::TrayGmailNotifier.Properties.Resources.NotificationBackgroundBlue;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(400, 115);
+            this.ClientSize = new System.Drawing.Size(510, 93);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "TrayGmailNotifier";
             this.ShowInTaskbar = false;
             this.Text = "TrayGmailNotifier";

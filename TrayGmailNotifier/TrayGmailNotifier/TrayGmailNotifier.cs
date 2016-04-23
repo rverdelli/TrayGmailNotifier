@@ -34,12 +34,12 @@ namespace TrayGmailNotifier
             notificationBody.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(26)))), ((int)(((byte)(72)))));
             notificationBody.BorderStyle = System.Windows.Forms.BorderStyle.None;
             notificationBody.Font = new System.Drawing.Font("Calibri", 10F);
-            notificationBody.ForeColor = System.Drawing.SystemColors.InactiveBorder;
-            notificationBody.Location = new System.Drawing.Point(4, 4);
+            notificationBody.ForeColor = System.Drawing.SystemColors.ControlText;
+            notificationBody.Location = new System.Drawing.Point(112, 4);
             notificationBody.Name = "NotificationBody";
             notificationBody.ReadOnly = true;
             notificationBody.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            notificationBody.Size = new System.Drawing.Size(392, 107);
+            notificationBody.Size = new System.Drawing.Size(394, 107);
             notificationBody.TabIndex = 1;
             notificationBody.Text = "Sample Text";
 

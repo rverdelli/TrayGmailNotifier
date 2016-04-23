@@ -38,26 +38,29 @@
             // GmailPasswordLabel
             // 
             this.GmailPasswordLabel.AutoSize = true;
-            this.GmailPasswordLabel.Location = new System.Drawing.Point(12, 35);
+            this.GmailPasswordLabel.Location = new System.Drawing.Point(9, 28);
+            this.GmailPasswordLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.GmailPasswordLabel.Name = "GmailPasswordLabel";
-            this.GmailPasswordLabel.Size = new System.Drawing.Size(112, 17);
+            this.GmailPasswordLabel.Size = new System.Drawing.Size(84, 13);
             this.GmailPasswordLabel.TabIndex = 0;
             this.GmailPasswordLabel.Text = "Gmail password:";
             // 
             // GmailPasswordTextField
             // 
-            this.GmailPasswordTextField.Location = new System.Drawing.Point(130, 32);
+            this.GmailPasswordTextField.Location = new System.Drawing.Point(98, 26);
+            this.GmailPasswordTextField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.GmailPasswordTextField.Name = "GmailPasswordTextField";
-            this.GmailPasswordTextField.Size = new System.Drawing.Size(199, 22);
+            this.GmailPasswordTextField.Size = new System.Drawing.Size(150, 20);
             this.GmailPasswordTextField.TabIndex = 2;
             this.GmailPasswordTextField.UseSystemPasswordChar = true;
             this.GmailPasswordTextField.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GmailTextBox_KeyDown);
             // 
             // PasswordEncryptionOkButton
             // 
-            this.PasswordEncryptionOkButton.Location = new System.Drawing.Point(239, 60);
+            this.PasswordEncryptionOkButton.Location = new System.Drawing.Point(179, 52);
+            this.PasswordEncryptionOkButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.PasswordEncryptionOkButton.Name = "PasswordEncryptionOkButton";
-            this.PasswordEncryptionOkButton.Size = new System.Drawing.Size(90, 26);
+            this.PasswordEncryptionOkButton.Size = new System.Drawing.Size(68, 21);
             this.PasswordEncryptionOkButton.TabIndex = 4;
             this.PasswordEncryptionOkButton.Text = "OK";
             this.PasswordEncryptionOkButton.UseVisualStyleBackColor = true;
@@ -66,30 +69,33 @@
             // GmailAccountLabel
             // 
             this.GmailAccountLabel.AutoSize = true;
-            this.GmailAccountLabel.Location = new System.Drawing.Point(12, 9);
+            this.GmailAccountLabel.Location = new System.Drawing.Point(9, 7);
+            this.GmailAccountLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.GmailAccountLabel.Name = "GmailAccountLabel";
-            this.GmailAccountLabel.Size = new System.Drawing.Size(102, 17);
+            this.GmailAccountLabel.Size = new System.Drawing.Size(78, 13);
             this.GmailAccountLabel.TabIndex = 5;
             this.GmailAccountLabel.Text = "Gmail account:";
             // 
             // GmailAccountTextBox
             // 
-            this.GmailAccountTextBox.Location = new System.Drawing.Point(130, 6);
+            this.GmailAccountTextBox.Location = new System.Drawing.Point(98, 5);
+            this.GmailAccountTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.GmailAccountTextBox.Name = "GmailAccountTextBox";
-            this.GmailAccountTextBox.Size = new System.Drawing.Size(199, 22);
+            this.GmailAccountTextBox.Size = new System.Drawing.Size(150, 20);
             this.GmailAccountTextBox.TabIndex = 1;
             this.GmailAccountTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.GmailTextBox_KeyDown);
             // 
             // PasswordEncryptionForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(341, 99);
+            this.ClientSize = new System.Drawing.Size(256, 80);
             this.Controls.Add(this.GmailAccountTextBox);
             this.Controls.Add(this.GmailAccountLabel);
             this.Controls.Add(this.PasswordEncryptionOkButton);
             this.Controls.Add(this.GmailPasswordTextField);
             this.Controls.Add(this.GmailPasswordLabel);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PasswordEncryptionForm";
             this.Text = "PasswordEncryptionForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PasswordEncryptionForm_FormClosed);
