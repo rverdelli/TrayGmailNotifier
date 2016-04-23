@@ -1,0 +1,2 @@
+﻿TO ADD:
+-Password encryption disclaimer

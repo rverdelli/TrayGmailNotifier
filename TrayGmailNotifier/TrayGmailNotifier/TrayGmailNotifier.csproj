@@ -165,6 +165,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="NoNewMail.ico" />
+    <Content Include="TODO.txt" />
     <None Include="Resources\Border.jpg" />
     <None Include="Resources\dark_blue_gradient_by_msketchley-d3gs0d8.jpg" />
   </ItemGroup>
