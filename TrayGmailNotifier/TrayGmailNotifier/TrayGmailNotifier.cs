@@ -63,7 +63,7 @@ namespace TrayGmailNotifier
             int rightMargin = Convert.ToInt32(ConfigurationManager.AppSettings["NotificationsRightMargin"]);
             int bottomMargin = Convert.ToInt32(ConfigurationManager.AppSettings["NotificationsBottonMargin"]);
             int x = Screen.PrimaryScreen.Bounds.Width - this.Width - rightMargin;
-            int y = Screen.PrimaryScreen.Bounds.Height - this.Height - bottomMargin - 70;
+            int y = Screen.PrimaryScreen.Bounds.Height - this.Height - bottomMargin - 55;
             this.Location = new Point(x, y);
 
             string encryptionKey = System.Environment.UserName;

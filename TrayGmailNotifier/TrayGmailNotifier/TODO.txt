@@ -1,2 +1,7 @@
-﻿TO ADD:
+﻿BUG
+-First run throws and exception beacuse the AppConfig class can't find the xml.config file
+
+TO ADD:
 -Password encryption disclaimer
+-When closing with the X button the pwdEncForm an exception is thrown
+-Config file name is now writte in 2 places, causing possible incosistencies

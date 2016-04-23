@@ -10,7 +10,7 @@ namespace TrayGmailNotifier
 {
     public static class PasswordEncryptionUtils
     {
-        public static string EncryptedFileName = "data.cry";
+        public static string EncryptedFileName = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +  "\\TrayGmailNotifier\\data.cry";
         private static int bytesWritten;
 
         public static void EncryptPassword(string password)
