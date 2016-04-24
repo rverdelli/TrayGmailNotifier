@@ -15,30 +15,39 @@ namespace TrayGmailNotifier
 {
     public partial class PasswordEncryptionForm : Form
     {
+        private bool okClicked = false;
+
         public PasswordEncryptionForm()
         {
             InitializeComponent();
+            this.CenterToScreen();
             this.Icon = new Icon(AppConfig.NoNewMailIconPath.Value);
         }
 
         private void PasswordEncryptionForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-            AppConfig.UserName.Value = GmailAccountTextBox.Text;
-            string gmailPwd = GmailPasswordTextField.Text;
-            
-            PasswordEncryptionUtils.EncryptPassword(gmailPwd);       
+            if (!okClicked)
+                System.Environment.Exit(0);
         }
 
         private void PasswordEncryptionOkButton_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrWhiteSpace(GmailPasswordTextField.Text))
+            if (!String.IsNullOrWhiteSpace(GmailAccountTextBox.Text) && !String.IsNullOrWhiteSpace(GmailPasswordTextField.Text))
+            {
+                AppConfig.UserName.Value = GmailAccountTextBox.Text;
+                string gmailPwd = GmailPasswordTextField.Text;
+
+                PasswordEncryptionUtils.EncryptPassword(gmailPwd);
+
+                okClicked = true;
                 this.Close();
+            }
         }
 
         private void GmailTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
-                this.Close();
+                PasswordEncryptionOkButton_Click(sender, e);
         }
 
     }

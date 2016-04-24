@@ -48,7 +48,7 @@
             // GmailPasswordTextField
             // 
             this.GmailPasswordTextField.Location = new System.Drawing.Point(98, 26);
-            this.GmailPasswordTextField.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GmailPasswordTextField.Margin = new System.Windows.Forms.Padding(2);
             this.GmailPasswordTextField.Name = "GmailPasswordTextField";
             this.GmailPasswordTextField.Size = new System.Drawing.Size(150, 20);
             this.GmailPasswordTextField.TabIndex = 2;
@@ -58,7 +58,7 @@
             // PasswordEncryptionOkButton
             // 
             this.PasswordEncryptionOkButton.Location = new System.Drawing.Point(179, 52);
-            this.PasswordEncryptionOkButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.PasswordEncryptionOkButton.Margin = new System.Windows.Forms.Padding(2);
             this.PasswordEncryptionOkButton.Name = "PasswordEncryptionOkButton";
             this.PasswordEncryptionOkButton.Size = new System.Drawing.Size(68, 21);
             this.PasswordEncryptionOkButton.TabIndex = 4;
@@ -79,7 +79,7 @@
             // GmailAccountTextBox
             // 
             this.GmailAccountTextBox.Location = new System.Drawing.Point(98, 5);
-            this.GmailAccountTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.GmailAccountTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.GmailAccountTextBox.Name = "GmailAccountTextBox";
             this.GmailAccountTextBox.Size = new System.Drawing.Size(150, 20);
             this.GmailAccountTextBox.TabIndex = 1;
@@ -95,7 +95,7 @@
             this.Controls.Add(this.PasswordEncryptionOkButton);
             this.Controls.Add(this.GmailPasswordTextField);
             this.Controls.Add(this.GmailPasswordLabel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PasswordEncryptionForm";
             this.Text = "PasswordEncryptionForm";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PasswordEncryptionForm_FormClosed);

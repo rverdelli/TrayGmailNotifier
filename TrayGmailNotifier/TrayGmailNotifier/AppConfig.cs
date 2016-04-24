@@ -9,7 +9,7 @@ namespace TrayGmailNotifier
 {
     public static class AppConfig
     {
-        public static string xmlFileUri = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\TrayGmailNotifier\\config.xml";
+        public static readonly string xmlFileUri = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\TrayGmailNotifier\\config.xml";
         public static IParameter<int> NotificationsFadeInDelay = new XmlPersistentParameter<int>("NotificationsFadeInDelay", 250, xmlFileUri);
         public static IParameter<int> NotificationsFadeInSteps = new XmlPersistentParameter<int>("NotificationsFadeInSteps", 20, xmlFileUri);
         public static IParameter<int> NotificationsPersistDelay = new XmlPersistentParameter<int>("NotificationsPersistDelay", 5000, xmlFileUri);

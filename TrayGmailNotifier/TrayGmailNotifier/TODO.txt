@@ -1,7 +1,5 @@
-﻿BUG
--First run throws and exception beacuse the AppConfig class can't find the xml.config file
+﻿BUGS
 
 TO ADD:
 -Password encryption disclaimer
--When closing with the X button the pwdEncForm an exception is thrown
--Config file name is now writte in 2 places, causing possible incosistencies
+-Config file name is now written in 2 places, causing possible incosistencies

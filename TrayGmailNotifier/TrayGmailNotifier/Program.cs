@@ -20,14 +20,8 @@ namespace TrayGmailNotifier
             Application.SetCompatibleTextRenderingDefault(false);
 
             //MyDoc folder initialization
-            string myDocumentsTrayFolder = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +  "\\TrayGmailNotifier\\";
-
-            if (!Directory.Exists(myDocumentsTrayFolder))
-                Directory.CreateDirectory(myDocumentsTrayFolder);
-
-            if (!File.Exists(myDocumentsTrayFolder + "config.xml"))
-                File.Create(myDocumentsTrayFolder + "config.xml").Close();
-
+            if (!Directory.Exists(Path.GetDirectoryName(PasswordEncryptionUtils.EncryptedFileName)))
+                Directory.CreateDirectory(Path.GetDirectoryName(PasswordEncryptionUtils.EncryptedFileName));
 
             if(String.IsNullOrWhiteSpace( AppConfig.UserName.Value) || !File.Exists(PasswordEncryptionUtils.EncryptedFileName))
             {
