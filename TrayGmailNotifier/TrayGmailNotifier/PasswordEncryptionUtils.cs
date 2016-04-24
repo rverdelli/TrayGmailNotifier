@@ -37,6 +37,9 @@ namespace TrayGmailNotifier
             foreach (char c in decryptedString)
                 decryptedSecureString.AppendChar(c);
 
+            decryptedData = null;
+            decryptedString = null;
+
             return decryptedSecureString;
         }
 
