@@ -3,3 +3,8 @@
 TO ADD:
 -Password encryption disclaimer
 -Config file name is now written in 2 places, causing possible incosistencies
+
+DISCLAIMER POINTS
+PWD is crypted and stored in securestring
+using atom feed so no delete, send operation can be executed
+

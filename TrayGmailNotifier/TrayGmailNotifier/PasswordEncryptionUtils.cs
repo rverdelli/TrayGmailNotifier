@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,15 +23,21 @@ namespace TrayGmailNotifier
             }
         }
 
-        public static string GetDecryptedPassword()
+        public static SecureString GetDecryptedPassword()
         {
             byte[] decryptedData;
             using(FileStream fStream = new FileStream(EncryptedFileName, FileMode.Open))
             {
                 decryptedData = PasswordEncryptionUtils.DecryptDataFromStream(DataProtectionScope.CurrentUser, fStream);
             }
+            
+            string decryptedString = UnicodeEncoding.ASCII.GetString(decryptedData);
+            SecureString decryptedSecureString = new SecureString();
 
-            return UnicodeEncoding.ASCII.GetString(decryptedData);
+            foreach (char c in decryptedString)
+                decryptedSecureString.AppendChar(c);
+
+            return decryptedSecureString;
         }
 
         #region private

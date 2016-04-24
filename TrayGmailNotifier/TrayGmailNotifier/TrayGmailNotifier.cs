@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace TrayGmailNotifier
         private int notificationsPersistDelay;
         private int delayBetweenChecks;
         private List<string> actualUnreadMessagesIds = new List<string>();
-        private string gmailPassword;
+        private SecureString gmailPassword;
         private TransparentRichTextBox notificationBody;
 
         public TrayGmailNotifier()
@@ -69,7 +70,6 @@ namespace TrayGmailNotifier
 
             string encryptionKey = System.Environment.UserName;
             gmailPassword = PasswordEncryptionUtils.GetDecryptedPassword();
-            
 
             //Starting applicative thread
             Thread t = new Thread(() => checkForMail());
