@@ -3,6 +3,10 @@
 TO ADD:
 -Password encryption disclaimer
 -Config file name is now written in 2 places, causing possible incosistencies
+-Single clikc on tray icon should show all mail notifications like they were received right now
+-In case of failed authentication what happens? It should ask again for credentials
+-Create an installer
+-Make it a service
 
 DISCLAIMER POINTS
 PWD is crypted and stored in securestring

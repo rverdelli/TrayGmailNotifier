@@ -30,15 +30,12 @@ namespace TrayGmailNotifier
             {
                 decryptedData = PasswordEncryptionUtils.DecryptDataFromStream(DataProtectionScope.CurrentUser, fStream);
             }
-            
-            string decryptedString = UnicodeEncoding.ASCII.GetString(decryptedData);
+           
             SecureString decryptedSecureString = new SecureString();
-
-            foreach (char c in decryptedString)
-                decryptedSecureString.AppendChar(c);
+            foreach (byte b in decryptedData)
+                decryptedSecureString.AppendChar((char)b);
 
             decryptedData = null;
-            decryptedString = null;
 
             return decryptedSecureString;
         }
